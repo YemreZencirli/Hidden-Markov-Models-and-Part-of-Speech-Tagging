@@ -1,6 +1,6 @@
 import java.util.Hashtable;
 
-/*
+/**
 * In this NLP assignment, I used Brown corpus which has got all the words tagged with a PoStag. 
 * I used this corpus in order to train a Hidden Markov Model for PoS tagging. 
 * Therefore, for any given sentence, I found the PoS tag of each word. 
