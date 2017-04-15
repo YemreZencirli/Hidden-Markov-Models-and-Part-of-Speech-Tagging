@@ -29,12 +29,12 @@ public class Probability {
 	/* The function calculate transition probability and return */
 	public double calculateTransitionProbability(Tag previousTag, Tag currentTag) {
 		
-		int counter = 0;									/* Keep the number of tag */
+		int counter = 0;						/* Keep the number of tag */
 		
-		for(String key : previousTag.getAfterTags()) {		/* The tags of the tag until the end */
+		for(String key : previousTag.getAfterTags()) {			/* The tags of the tag until the end */
 			
 			if(key.equals(currentTag.getName())) {			/* Check is equal or not name tag */
-				counter++;									/* Increase counter */
+				counter++;					/* Increase counter */
 			}
 			
 		}
@@ -56,7 +56,7 @@ public class Probability {
 		/* The paths of the array until the end */
 		for(String path : paths) {
 			
-			double probability = 0.0;					/* Keep probability value */
+			double probability = 0.0;				/* Keep probability value */
 			double initialProbability = 0.0;			/* Keep initial probability value */
 				
 			String [] tags = path.split(" ");			/* Keep tags of path */
@@ -84,7 +84,7 @@ public class Probability {
 					result 2 base is added and added to the probability. */
 					String lcWord = words[i + 1].toLowerCase(locale);
 					double emissionProbability = calculateEmissionProbability(ht.get(tags[i + 1]), 
-												 ht.get(tags[i + 1]).getWords().get(lcWord));
+										ht.get(tags[i + 1]).getWords().get(lcWord));
 					emissionProbability = Math.log(emissionProbability) / Math.log(2);
 					probability += emissionProbability;
 					
@@ -97,21 +97,21 @@ public class Probability {
 			
 		}
 		
-		double max = probabilities.get(0);				/* Assigning first probability of probabilities array */
-		int counter = 0;								/* Probabilities holds index of array */
+		double max = probabilities.get(0);		/* Assigning first probability of probabilities array */
+		int counter = 0;				/* Probabilities holds index of array */
 		
 		for(int i = 0; i < probabilities.size(); i++) { /* The probabilities of the array until the end */
 			
-			if(max < probabilities.get(i)) {			/* Compare max and probability */
+			if(max < probabilities.get(i)) {	/* Compare max and probability */
 				
-				counter = i;							/* Assigning index */
-				max = probabilities.get(i);				/* Assigning probability */
+				counter = i;			/* Assigning index */
+				max = probabilities.get(i);	/* Assigning probability */
 				
 			}
 			
 		}
 
-		return counter;									/* Return max probability index of probabilities array */
+		return counter;					/* Return max probability index of probabilities array */
 		
 	}
 	
