@@ -6,15 +6,15 @@ public class Tag {
 	
 	/* ----------------------------------------- ATTRIBUTES ----------------------------------------- */
 	
-	private String name = null;								/* Keep tag name*/
-	private int totalWord = 0;								/* Keep total word of tag */
-	private int initialCounter = 0;							/* Keep the number of initial tag */
-	private int initialTotalTag = 0;						/* Keep initial total tag */
+	private String name = null;					/* Keep tag name*/
+	private int totalWord = 0;					/* Keep total word of tag */
+	private int initialCounter = 0;					/* Keep the number of initial tag */
+	private int initialTotalTag = 0;				/* Keep initial total tag */
 	private Hashtable<String, Word> words = null;			/* Keep words of tag */
-	private Hashtable<String, String> afterTagTypes = null; /* Keep type of after tags of the tag */
-	private ArrayList<String> afterTags = null;				/* Keep after tags of the tag */
-	private double initialTagProbability = 0.0;				/* Keep initial tag probability */
-	private double transitionProbability = 0.0;				/* Keep transition probability */
+	private Hashtable<String, String> afterTagTypes = null; 	/* Keep type of after tags of the tag */
+	private ArrayList<String> afterTags = null;			/* Keep after tags of the tag */
+	private double initialTagProbability = 0.0;			/* Keep initial tag probability */
+	private double transitionProbability = 0.0;			/* Keep transition probability */
 	
 	/* ------------------------------------- GETTERS AND SETTERS ------------------------------------- */
 
@@ -75,16 +75,16 @@ public class Tag {
 	/* This function reads the data structure on Task 1 and adds the words to the desired tag. */
 	public void add(Tag tg, Hashtable<String, Tag> ht, String[] tagWord) {
 		
-		boolean initial = true;										/* For check head of sentence */
-		String previous = null;										/* For previous tag */
+		boolean initial = true;						/* For check head of sentence */
+		String previous = null;						/* For previous tag */
 		
-		for(String tw : tagWord) {									/* The tag and words of the tag turning up */
+		for(String tw : tagWord) {					/* The tag and words of the tag turning up */
 			
-			String[] words = separation(tw);						/* Send for edit line */
+			String[] words = separation(tw);			/* Send for edit line */
 			
-			if(words[0] != null && words[1] != null) {				/* Check tag and word is empty */
+			if(words[0] != null && words[1] != null) {		/* Check tag and word is empty */
 				
-				if(!ht.containsKey(words[1])) {						/* Check data structure contain tag */
+				if(!ht.containsKey(words[1])) {			/* Check data structure contain tag */
 					
 					/* Tag add operations */
 					ht.put(words[1], new Tag());
@@ -95,10 +95,10 @@ public class Tag {
 					
 				}
 		
-				if(initial) {										/* Check head of sentence */
+				if(initial) {					/* Check head of sentence */
 					
-					tg.initialTotalTag++;							/* Increase initial total tag */
-					ht.get(words[1]).initialCounter++;				/* Increase initial tag */
+					tg.initialTotalTag++;			/* Increase initial total tag */
+					ht.get(words[1]).initialCounter++;	/* Increase initial tag */
 					
 				}
 				else {
@@ -115,9 +115,9 @@ public class Tag {
 				/* Send function of the tag to add the tag */
 				new Word().add(ht.get(words[1]), words[0], initial);
 				
-				ht.get(words[1]).totalWord++;						/* Increase word number of the tag */						
-				previous = words[1];								/* Assigning tag to previous */
-				initial = false;									/* Do not initial tag */
+				ht.get(words[1]).totalWord++;			/* Increase word number of the tag */						
+				previous = words[1];				/* Assigning tag to previous */
+				initial = false;				/* Do not initial tag */
 				
 			}
 			
@@ -132,26 +132,26 @@ public class Tag {
 		/* The translation of the words into lower case is done according to this locale. */
 		Locale locale =  new Locale.Builder().setLanguageTag("en-US").build();
 		
-		tw = tw.trim();												/* Delete space of line */
-		String [] tagsAndWord = new String[2];						/* Keep tag and word of the tag */
+		tw = tw.trim();							/* Delete space of line */
+		String [] tagsAndWord = new String[2];				/* Keep tag and word of the tag */
 		
 		/* Check word contains '/' and controlling word size */
 		if(tw.contains("/") && tw.length() > 2) {
 			
-			int counter = 0;										/* Keep number of '/' */
+			int counter = 0;					/* Keep number of '/' */
 			
-			for(char ch : tw.toCharArray()) {						/* The letters of the word turning up */
-				if(ch == '/')										/* Check letter is or not '/' */
-				  counter++;										/* Increase counter of '/' */
+			for(char ch : tw.toCharArray()) {			/* The letters of the word turning up */
+				if(ch == '/')					/* Check letter is or not '/' */
+				  counter++;					/* Increase counter of '/' */
 			}
 			
-			if(counter > 1) {										/* Check number of '/' */
+			if(counter > 1) {					/* Check number of '/' */
 				
-				for(int i = tw.length() - 1; i >= 0; i--) {			/* The letters of the line turning up */
+				for(int i = tw.length() - 1; i >= 0; i--) {	/* The letters of the line turning up */
 					
-					if(tw.charAt(i) == '/') {						/* Controlling letter */
+					if(tw.charAt(i) == '/') {		/* Controlling letter */
 						
-						if(i == tw.length() - 1) {					/* Check the last letter of line */
+						if(i == tw.length() - 1) {	/* Check the last letter of line */
 							
 							/* Word convert to lower case */
 							tagsAndWord[0] = tw.substring(0, i - 1).toLowerCase(locale);
@@ -160,7 +160,7 @@ public class Tag {
 							tagsAndWord[1] = tw.substring(i, i + 1).toLowerCase(locale);
 							
 						}
-						else {										/* Check the last letter of line */		
+						else {				/* Check the last letter of line */		
 							
 							/* Word convert to lower case */
 							tagsAndWord[0] = tw.substring(0, i).toLowerCase(locale);
@@ -192,7 +192,7 @@ public class Tag {
 			tagsAndWord[1] = null;			/* Assigning the tag is null */
 		}
 		
-		return tagsAndWord;					/* Return tag and words of the tag */
+		return tagsAndWord;				/* Return tag and words of the tag */
 		
 	}
 	
