@@ -3,10 +3,10 @@ public class Word {
 	
 	/* ----------------------------------------- ATTRIBUTES ----------------------------------------- */
 	
-	private String name = null;								/* Keep word name */
-	private int counter = 0;								/* Keep the number of word */
-	private int initialCounter = 0;							/* Keep the number of initial word */
-	private double emissionProbability = 0.0;				/* Keep emission probability value */
+	private String name = null;					/* Keep word name */
+	private int counter = 0;					/* Keep the number of word */
+	private int initialCounter = 0;					/* Keep the number of initial word */
+	private double emissionProbability = 0.0;			/* Keep emission probability value */
 	
 	/* ------------------------------------- GETTERS AND SETTERS ------------------------------------- */
 	
@@ -47,16 +47,16 @@ public class Word {
 	/* In this function, the word is added to the specified tag. */
 	public void add(Tag tag, String word, boolean initial) {
 		
-		if(!tag.getWords().containsKey(word)) {				/* Check tag contain word */
+		if(!tag.getWords().containsKey(word)) {			/* Check tag contain word */
 			
-			tag.getWords().put(word, new Word());			/* Word added the tag */
+			tag.getWords().put(word, new Word());		/* Word added the tag */
 			
 		}
 		
-		if(initial)											/* Check head word of sentence */
-			tag.getWords().get(word).initialCounter++;		/* Increase number of initial word */
+		if(initial)						/* Check head word of sentence */
+			tag.getWords().get(word).initialCounter++;	/* Increase number of initial word */
 		
-		tag.getWords().get(word).counter++;					/* Increase number of word */
+		tag.getWords().get(word).counter++;			/* Increase number of word */
 		
 	}
 	
